@@ -42,4 +42,4 @@ class catcher:
                     #print downloadurl
                     #print downloadurl
                     name = downloadurl.split('/')
-                    self.download(downloadurl, './data/Education/'+name[-1])
+                    self.download(downloadurl, './data/Safety1/'+name[-1])

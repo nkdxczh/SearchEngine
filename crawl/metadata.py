@@ -3,7 +3,7 @@ import requests
 from selenium.common.exceptions import TimeoutException
 import os.path
 
-class catcher:
+class metaCatcher:
     def __init__(self):
         self.browser = Browser()
         self.browser.driver.set_page_load_timeout(5)
@@ -25,11 +25,16 @@ class catcher:
         self.browser.visit(self.url)
         items = self.browser.find_by_css('.dataset-heading')
         tmpitems = []
+        setName = []
         for item in items:
             href = item.find_by_tag('a')
+            setName.append(href[0].text)
             tmpitems.append(href[0]['href'])
-
+        print setName
+            
+        i = -1
         for href in tmpitems:
+            i += 1
             try:
                 self.browser.visit(href)
             except TimeoutException:
@@ -38,8 +43,8 @@ class catcher:
             for g in groups:
                 #g.text
                 downloadurl = str(g['href'])
-                if g.text == 'Download' and downloadurl.endswith('.csv'):
+                if g.text == 'Download Metadata':
                     #print downloadurl
                     #print downloadurl
-                    name = downloadurl.split('/')
-                    self.download(downloadurl, './data/Education/'+name[-1])
+                    name = setName[i]
+                    self.download(downloadurl, './meta/Safety1/'+name + '.json')
