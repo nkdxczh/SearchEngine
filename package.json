@@ -1,0 +1,17 @@
+{
+  "name": "503",
+  "version": "1.0.0",
+  "description": "Search engine for government data",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Nate + Mike",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "path": "^0.12.7",
+    "url": "^0.11.0"
+  }
+}
