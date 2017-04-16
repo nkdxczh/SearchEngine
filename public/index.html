@@ -28,7 +28,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">WebSiteName</a>
+                    <a class="navbar-brand" href="#">503 Search Engine</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
@@ -39,24 +39,25 @@
             <div class="row">
                 <div class='col-sm-4'></div>
                 <div class="col-sm-4">
+                    <h1 class="centerMe">503</h1>
                     <div class="input-group">
                         <div class="input-group-btn search-panel">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                            <button type="button" class="btn btn-default dropdown-toggle btn-inverse" data-toggle="dropdown">
+                    	<span id="search_concept">Index</span> <span class="caret"></span>
                     </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#contains">Contains</a></li>
-                                <li><a href="#its_equal">It's equal</a></li>
-                                <li><a href="#greather_than">Greather than ></a></li>
-                                <li><a href="#less_than">Less than < </a></li>
+                                <li><a href="#contains">Index 1</a></li>
+                                <li><a href="#its_equal">Index 2</a></li>
+                                <li><a href="#greather_than">Index 3</a></li>
+                                <li><a href="#less_than">Index 4</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#all">Anything</a></li>
+                                <li><a href="#all">All Indexs</a></li>
                             </ul>
                         </div>
                         <input type="hidden" name="search_param" value="all" id="search_param">
-                        <input type="text" class="form-control" name="x" placeholder="Search term...">
+                        <input id="searchBar" type="text" class="form-control" name="x" placeholder="Search term...">
                         <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button id="searchButton" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                         </span>
                     </div>
                 </div>

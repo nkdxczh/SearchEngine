@@ -31,6 +31,3 @@ app.get('/query', (req, res) =>{
     res.end();
 });
 
-app.get('/login', function(req, res){
-    res
-});

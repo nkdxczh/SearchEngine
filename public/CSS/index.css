@@ -1,3 +1,21 @@
-#centerMe{
+.centerMe{
     text-align: center;
 }
+
+h1{
+    font-size: 70px;
+    font-weight: bold;
+    color: #333;
+}
+
+button{
+    background-color: #333 !important;
+    color: white !important;
+}
+
+input{
+    border: 2px solid #333 !important;
+}
+
+
+
