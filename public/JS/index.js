@@ -6,7 +6,7 @@ $(document).ready(function () {
         xhr.onload = function () {
             console.log("the data from the server is: " + xhr.response);
         };
-        xhr.open("GET", "/query?q=" + query);
+        xhr.open("GET", "/query");
         xhr.send();
     });
 });
