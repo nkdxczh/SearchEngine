@@ -29,7 +29,7 @@ app.get('/query', (req, res) => {
     //call elasticsearch api
 
     //console.log('params are: ' + params);
-    request("http://localhost:9200/_search?pretty", {
+    request("http://localhost:9200/meta/_search?pretty", {
         "query": {
             "match": {
                 "column": "year"

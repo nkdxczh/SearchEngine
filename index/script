@@ -36,6 +36,12 @@ curl -XGET 'localhost:9200/_search?pretty' -H 'Content-Type: application/json' -
 }
 '
 
+curl -XGET 'localhost:9200/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+    "query": "year"
+}
+'
+
 sudo systemctl start elasticsearch
 sudo systemctl restart elasticsearch
 
@@ -120,8 +126,8 @@ curl -XGET 'localhost:9200/line/0?pretty'
 curl -XGET 'localhost:9200/lines/_search?pretty' -H 'Content-Type: application/json' -d'
 {
     "query": {
-        "match" : {
-            "Year" : "2008"
+        "match_all" : {
+            "Year"
         }
     }
 }
