@@ -20,6 +20,6 @@ $(document).ready(function () {
 
                 }
         };
-        xhr.send(JSON.stringify({"query": {"match" : {"column" : query}}}));
+        xhr.send(JSON.stringify({"query": {"match" : {"_all" : query}}}));
     });
 });
