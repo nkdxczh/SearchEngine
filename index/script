@@ -31,8 +31,7 @@ curl -XGET 'localhost:9200/meta/_search?pretty' -H 'Content-Type: application/js
     "from" : 0, "size" : 5,
     "query": {
         "match" : {
-            "_all" : "year"
-            "_all" : "rece"
+            "_all" : "1920"
         }
     }
 }

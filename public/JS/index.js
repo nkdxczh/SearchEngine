@@ -30,12 +30,27 @@ $(document).ready(function () {
             console.log(xhr.response);
             displayData(JSON.parse(xhr.response), query);
         }
-        xhr.open("GET", "/query?q=" + query + "&index=" + index);
+        //split query 'index:term;'
+        var queryArray = query.split(";");
+        var fields = new Array();
+        var terms = new Array();
+        queryArray.forEach((element) => {
+            //now get field and term
+            if (element.split(":").length != 2) {
+                fields.push("_all");
+                terms.push(element.split(":")[0]);
+            }
+            else {
+                fields.push(element.split(":")[0]);
+                terms.push(element.split(":")[1]);
+            }
+        });
+        xhr.open("GET", "/query?fields=" + fields + "&terms=" + terms);
         xhr.send();
     });
 
     //Record the index chosen for the drop down selected
-    $("#indexSelect li a").click(function() {
+    $("#indexSelect li a").click(function () {
         index = $(this).text();
         console.log('index selected is: ' + index);
     });
