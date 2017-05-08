@@ -21,24 +21,38 @@ app.use(express.static('public'));
 //-----------------------------------------------------------------------------------------------
 //                                              Routing Information
 
+var bod = {
+    "from": 0, "size": 100,
+    "query": {
+        "match": {
+            "_all": "year"
+        }
+    }
+};
+
+var bodStr = JSON.stringify(bod);
+
+
+var options = {
+    url: "http://localhost:9200/meta/_search?pretty",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    body: bodStr
+};
+
 app.get('/query', (req, res) => {
-    //var queryObject = url.parse(req.url, true);
-    //var path = queryObject.path;
-    //var params = queryObject.query;
     console.log('path is: ' + req.url);
+    console.log('the query is: ' + req.query.q);
+    console.log('the index is: ' + req.query.index);
+    // console.log("parameters are: " + params);
     //call elasticsearch api
 
     //console.log('params are: ' + params);
-    request("http://localhost:9200/meta/_search?pretty", {
-        "query": {
-            "match": {
-                "column": "year"
-            }
-        }
-    }, (error, response, body) => {
+    request(options, (error, response, body) => {
         console.log('error:', error); // Print the error if one occurred 
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-        console.log('body:', body); // Print the HTML for the Google homepage.
+        console.log('body:', body);
         res.writeHead(200);
         res.write(body);
         res.end();
