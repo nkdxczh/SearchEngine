@@ -24,27 +24,49 @@ app.use(express.static('public'));
 var bod = {
     "from": 0, "size": 100,
     "query": {
-        "match": {
-            "_all": "year"
+        "bool" : {
+            "must": []
         }
     }
 };
 
-var bodStr = JSON.stringify(bod);
+var meta =  "http://localhost:9200/meta/_search?pretty";
+var line = "http://localhost:9200/line/_search?pretty";
+var all = "http://localhost:9200/_search?pretty"
 
+function makeOptions() {
 
-var options = {
-    url: "http://localhost:9200/meta/_search?pretty",
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    body: bodStr
-};
+    var bodStr = JSON.stringify(bod);
+    var options = {
+        url: all,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        body: bodStr
+    };
+    return options;
+}
 
 app.get('/query', (req, res) => {
     console.log('path is: ' + req.url);
-    console.log('the query is: ' + req.query.q);
-    console.log('the index is: ' + req.query.index);
+    console.log('the fields is: ' + req.query.fields);
+    console.log('the terms is: ' + req.query.terms);
+    var fields = req.query.fields.split(",");
+    var terms = req.query.terms.split(",");
+    var i = 0;
+    var length = Math.min(fields.length, terms.length);
+    console.log(length);
+    for(i; i < length; i++){
+        var field = fields[i];
+        var temp = {
+            "match" : {
+                field:terms[i]
+            }
+        };
+        bod.query.bool.must.push(temp);
+    }
+    //bod.query.match._all = query;
+    var options = makeOptions();
     // console.log("parameters are: " + params);
     //call elasticsearch api
 
@@ -52,7 +74,7 @@ app.get('/query', (req, res) => {
     request(options, (error, response, body) => {
         console.log('error:', error); // Print the error if one occurred 
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-        console.log('body:', body);
+        //console.log('body:', body);
         res.writeHead(200);
         res.write(body);
         res.end();
