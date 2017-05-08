@@ -57,13 +57,13 @@ app.get('/query', (req, res) => {
     var length = Math.min(fields.length, terms.length);
     console.log(length);
     for(i; i < length; i++){
-        var field = fields[i];
+        var match={};
+        match[fields[i]] = terms[i];
         var temp = {
-            "match" : {
-                field:terms[i]
-            }
+            match
         };
         bod.query.bool.must.push(temp);
+        console.log(JSON.stringify(bod));
     }
     //bod.query.match._all = query;
     var options = makeOptions();
