@@ -24,19 +24,36 @@ curl -XPUT localhost:9200/_bulk --data-binary @raw.json
 
 curl -XGET 'localhost:9200/raw?pretty'
 
+index= ''
+index='/meta' or '/line'
+'localhost:9200' + index + '/_search?'
 
 query:
-curl -XGET 'localhost:9200/meta/_search?pretty' -H 'Content-Type: application/json' -d'
+curl -XGET 'localhost:9200/_search?pretty' -H 'Content-Type: application/json' -d'
 {
     "from" : 0, "size" : 5,
     "query": {
         "match" : {
-            "_all" : "year"
-            "_all" : "rece"
+            "_all" : "1920"
         }
     }
 }
 '
+
+curl -XGET 'localhost:9200/meta/_search?pretty' -H 'Content-Type: application/json' -d'
+{
+    "from" : 0, "size" : 5,
+    "query": {
+        "bool": {
+        	"must": [
+        		{ "match": { "year": "1234" } },
+        		{ "match": { "_all": "race" } }
+      		]
+    	}
+    }
+}
+'
+
 
 curl -XGET 'localhost:9200/_search?pretty' -H 'Content-Type: application/json' -d'
 {
