@@ -45,13 +45,13 @@
                             <button type="button" class="btn btn-default dropdown-toggle btn-inverse" data-toggle="dropdown">
                       <span id="search_concept">Index</span> <span class="caret"></span>
                     </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#contains">Index 1</a></li>
-                                <li><a href="#its_equal">Index 2</a></li>
-                                <li><a href="#greather_than">Index 3</a></li>
-                                <li><a href="#less_than">Index 4</a></li>
+                            <ul id='indexSelect' class="dropdown-menu" role="menu">
+                                <li><a href='#1'>Index 1</a></li>
+                                <li><a href='#2'>Index 2</a></li>
+                                <li><a href='#3'>Index 3</a></li>
+                                <li><a href='#4'>Index 4</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#all">All Indexs</a></li>
+                                <li><a href='#all'>All Indexs</a></li>
                             </ul>
                         </div>
                         <input type="hidden" name="search_param" value="all" id="search_param">
@@ -62,9 +62,21 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
+                </div>
             </div>
         </div>
-    </div>
+        <div class="container">
+            <div id="toggelVisibility" style="visibility: hidden">
+
+                <hgroup class="mb20">
+                    <h1>Search Results</h1>
+                    <h2 class="lead"><strong id='matches' class="text-danger"></strong> results were found for the search <strong id="displayQuery" class="text-danger"></strong></h2>
+                </hgroup>
+
+                <section id="append" class="col-xs-12 col-sm-6 col-md-12">
+                </section>
+            </div>
+        </div>
 
 </body>
 
