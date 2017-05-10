@@ -31,10 +31,10 @@ index='/meta' or '/line'
 query:
 curl -XGET 'localhost:9200/_search?pretty' -H 'Content-Type: application/json' -d'
 {
-    "from" : 0, "size" : 5,
+    "from" : 0, "size" : 1,
     "query": {
         "match" : {
-            "_all" : "1920"
+            "name" : "userssharedsdfinvestingininnovation2010applications.csv"
         }
     }
 }
@@ -142,11 +142,11 @@ curl -XGET 'localhost:9200/lines/_search?pretty' -H 'Content-Type: application/j
 
 curl -XGET 'localhost:9200/line/0?pretty'
 
-curl -XGET 'localhost:9200/lines/_search?pretty' -H 'Content-Type: application/json' -d'
+curl -XGET 'localhost:9200/meta/_search?pretty' -H 'Content-Type: application/json' -d'
 {
     "query": {
         "match_all" : {
-            "Year"
+            name : "userssharedsdfinvestingininnovation2010applications.csv"
         }
     }
 }

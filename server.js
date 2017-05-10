@@ -31,14 +31,17 @@ var bod = {
 };
 
 var meta =  "http://localhost:9200/meta/_search?pretty";
-var line = "http://localhost:9200/line/_search?pretty";
+var line = "http://localhost:9200/lines/_search?pretty";
 var all = "http://localhost:9200/_search?pretty"
 
-function makeOptions() {
+function makeOptions(index) {
 
     var bodStr = JSON.stringify(bod);
+    var u = all;
+    if(index == "Meta Data")u = meta;
+    if(index == "Line")u = line;
     var options = {
-        url: all,
+        url: u,
         "headers": {
             "Content-Type": "application/json"
         },
@@ -53,6 +56,7 @@ app.get('/query', (req, res) => {
     console.log('the terms is: ' + req.query.terms);
     var fields = req.query.fields.split(",");
     var terms = req.query.terms.split(",");
+    var index = req.query.index;
     var i = 0;
     var length = Math.min(fields.length, terms.length);
     console.log(length);
@@ -67,7 +71,7 @@ app.get('/query', (req, res) => {
         console.log(JSON.stringify(bod));
     }
     //bod.query.match._all = query;
-    var options = makeOptions();
+    var options = makeOptions(index);
     // console.log("parameters are: " + params);
     //call elasticsearch api
 
@@ -82,3 +86,30 @@ app.get('/query', (req, res) => {
     });
 });
 
+app.get('/getMeta', (req, res) => {
+    var name = req.getMeta.name;
+    var bod = {
+        "from" : 0, "size" : 1,
+        "query": {
+            "match" : {
+                "name" : name
+            }
+        }
+    }
+
+    var bodStr = JSON.stringify(bod);
+
+    var options = {
+        url: meta,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        body: bodStr
+    };
+
+    request(options, (error, response, body) => {
+        res.writeHead(200);
+        res.write(body);
+        res.end();
+    });
+});
