@@ -56,6 +56,7 @@ app.get('/query', (req, res) => {
     var i = 0;
     var length = Math.min(fields.length, terms.length);
     console.log(length);
+    bod.query.bool.must = new Array();
     for(i; i < length; i++){
         var match={};
         match[fields[i]] = terms[i];
