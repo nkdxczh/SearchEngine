@@ -62,6 +62,7 @@ function displayData(jData, query) {
     console.log(results);
     $("#matches").text(results);
     $("#displayQuery").text(query);
+    $("#append").empty();
     jData.hits.hits.forEach(function (element) {
         if(element._type == "line"){
             /*var xhr = new XMLHttpRequest();
@@ -78,7 +79,7 @@ function displayData(jData, query) {
             }
             xhr.open("GET", "/getMeta?name=" + element._source.file );
             xhr.send();*/
-            let id = element._id;
+            let id = "line" + element._id;
             let title = element._source.file;
             let description = "The " + element._source.line + " row."
             let display = $(searchResult);
@@ -88,7 +89,7 @@ function displayData(jData, query) {
             $("#" + id + " div p").text(description);
         }
         else{
-            let id = element._id;
+            let id = "meta" + element._id;
             let title = element._source.name;
             let description = element._source.description;
             console.log("title is: " + title + "\ndescription is: " + description);
