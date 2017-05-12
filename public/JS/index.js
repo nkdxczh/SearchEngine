@@ -19,11 +19,15 @@ var searchResult = "<article class='search-result row'> \
                     <span class='clearfix borda'></span> \
                     </article>"
 
-var searchArray = new Array();
+var searchArray;
 
 $(document).ready(function () {
     var index = 'all';
     $("#searchButton").click(function () {
+        //delete array and append data
+        searchArray = new Array();
+        $("#append").children().remove();
+        $("#pageNum").children().remove();
         $("#append").innerHTML = "";
         $("#toggelVisibility").css("visibility", "visible");
         var query = $("#searchBar").val();
